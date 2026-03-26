@@ -31,9 +31,13 @@ class CarInterface(CarInterfaceBase):
       ret.openpilotLongitudinalControl = True
       ret.safetyConfigs[0].safetyParam |= RivianSafetyFlags.LONG_CONTROL.value
 
-    ret.longitudinalActuatorDelay = 0.35
+    # Electric drivetrain responds faster than combustion; reduced from 0.35
+    ret.longitudinalActuatorDelay = 0.20
     ret.vEgoStopping = 0.25
     ret.stopAccel = 0
+    # Enable dedicated starting state with an immediate kick from rest
+    ret.startingState = True
+    ret.startAccel = 1.2
 
     return ret
 
